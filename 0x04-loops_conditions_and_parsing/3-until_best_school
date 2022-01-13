@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# a script to print best school using untill
+
+i=1
+until [ $i -gt 10 ]
+do 
+echo "Best School"
+((i++))
+done
