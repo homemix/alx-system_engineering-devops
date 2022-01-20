@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Once packets have been sent to the right network device using IP using either UDP or TCP
+netstat -lp
+
