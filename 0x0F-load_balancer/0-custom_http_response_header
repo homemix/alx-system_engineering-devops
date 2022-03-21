@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2016
+# shellcheck disable=SC2154
 # s
 # configures ubuntu serveur with custom header
 sudo apt-get -y update
