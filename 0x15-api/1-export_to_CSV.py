@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Export data in the APi database to a CSV file to apis """
-import requests
 import csv
+import requests
 import sys
 
 if __name__ == "__main__":
