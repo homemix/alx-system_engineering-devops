@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Export data in the APi database to a CSV file """
+""" Export data in the APi database to a CSV file to apis """
 import requests
 import csv
 import sys
