@@ -4,7 +4,6 @@ import requests
 import csv
 import sys
 
-
 if __name__ == "__main__":
     user_id = sys.argv[1]
     url = 'https://jsonplaceholder.typicode.com/todos?userId={}' \
@@ -20,14 +19,13 @@ if __name__ == "__main__":
     with open('{}.csv'.format(user_id), 'w') as csvfile:
         fieldnames = ['USER_ID', 'USERNAME',
                       'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for task in r_json:
-            writer.writerow({
-                'USER_ID': user_id,
-                'USERNAME': user_name,
-                'TASK_COMPLETED_STATUS': task.get('completed'),
-                'TASK_TITLE': task.get('title'),
-            })
+            writer.writerow([
+                user_id,
+                user_name,
+                task.get('completed'),
+                task.get('title'),
+            ])
     csvfile.close()
     print("File {}.csv created successfully".format(user_id))
