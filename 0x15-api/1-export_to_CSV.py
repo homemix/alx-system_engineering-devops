@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+""" Export data in the APi database to a CSV file """
 import requests
 import csv
 import sys
@@ -17,7 +17,8 @@ if __name__ == "__main__":
     user_name = r_json_user.get('username')
 
     with open('{}.csv'.format(user_id), 'w') as csvfile:
-        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        fieldnames = ['USER_ID', 'USERNAME',
+                      'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for task in r_json:
