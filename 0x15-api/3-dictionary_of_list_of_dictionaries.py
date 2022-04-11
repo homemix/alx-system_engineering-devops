@@ -1,27 +1,21 @@
 #!/usr/bin/python3
-""" Dictionary of list of dictionaries
- Records all tasks from all employees """
+"""
+Write a Python script that, using this REST API,
+for a given employee ID, returns information about
+his/her
+export data in the json format.
+"""
 import json
 import requests
-from sys import argv
 
 if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/'
-    r = requests.get(url)
-    user = r.json()
-    url = 'https://jsonplaceholder.typicode.com/todos'
-    r = requests.get(url)
-    todo = r.json()
-    data = {}
-    for user in todo:
-        if user['userId'] not in data:
-            data[user['userId']] = []
-        data[user['userId']].append({
-            'task': user['title'],
-            'completed': user['completed']
-        })
-    with open('todo_all_employees.json', 'w') as f:
-        json.dump(data, f)
-    f.close()
-    print('File saved!')
-
+    filename = "todo_all_employees.json"
+    req = requests.get('https://jsonplaceholder.typicode.com/todos').json()
+    req_id = requests.get('https://jsonplaceholder.typicode.com/users/').json()
+    with open(filename, "w") as f:
+        d = {j.get("id"): [{'task': i.get('title'),
+                            'completed': i.get('completed'),
+                            'username': j.get('username')} for i in req
+                           if j.get("id") == i.get('userId')]
+             for j in req_id}
+        json.dump(d, f)
