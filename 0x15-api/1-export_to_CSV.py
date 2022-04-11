@@ -4,8 +4,9 @@ import requests
 import csv
 import sys
 
-user_id = sys.argv[1]
+
 if __name__ == "__main__":
+    user_id = sys.argv[1]
     url = 'https://jsonplaceholder.typicode.com/todos?userId={}' \
         .format(user_id)
     r = requests.get(url)
