@@ -1,15 +1,10 @@
 # Nginx configuration file to serve a webpage from the route /airbnb-onepage/
 server {
-        listen 80;
-        listen [::]:80;
+    listen 80;
+    server_name 3.94.99.39;
 
-      #  root /var/www/your_domain/html;
-      #  index index.html index.htm index.nginx-debian.html;
-
-        server_name 3.94.99.39  www.3.94.99.39;
-
-        location / {
-              # try_files $uri $uri/ =404;
-		proxy_pass  http://127.0.0.1:5000/;
-        }
+    location /airbnb-onepage/ {
+        include proxy_params;
+	proxy_pass http://127.0.0.1:5000;
+    }
 }
